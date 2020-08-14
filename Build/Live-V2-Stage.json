@@ -1,0 +1,17 @@
+{
+"companyName": "DefaultCompany",
+"productName": "New Unity Project",
+"productVersion": "1.0",
+"dataUrl": "Live-V2-Stage.data.unityweb",
+"wasmCodeUrl": "Live-V2-Stage.wasm.code.unityweb",
+"wasmFrameworkUrl": "Live-V2-Stage.wasm.framework.unityweb",
+"wasmSymbolsUrl": "Live-V2-Stage.wasm.symbols.unityweb",
+"graphicsAPI": ["WebGL 2.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.0f1"
+}
