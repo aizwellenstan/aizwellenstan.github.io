@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<!-- saved from url=(0183)file:///Users/raphtalia/Library/Application%20Support/TRAE%20SOLO/ModularData/ai-agent/work-mode-projects/6a2fa3022223bf62f46d7833/OS_Ch06-10_%E5%AD%B8%E9%9C%B8%E7%AD%86%E8%A8%98.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作業系統 Chapter 06–10 學霸筆記</title>
+<link href="./作業系統 Chapter 06–10 學霸筆記_files/css2" rel="stylesheet">
+<link href="./作業系統 Chapter 06–10 學霸筆記_files/lucide.min.css" rel="stylesheet">
+<style>
+  :root {
+    --paper-bg: #fdf6e3;
+    --paper-dark: #f5ecd3;
+    --paper-line: #e8e0cc;
+    --ink-black: #2c2c2c;
+    --ink-red: #c0392b;
+    --ink-blue: #2980b9;
+    --ink-green: #27ae60;
+    --ink-purple: #8e44ad;
+    --ink-orange: #e67e22;
+    --highlight-yellow: rgba(255, 235, 59, 0.35);
+    --highlight-pink: rgba(255, 105, 180, 0.25);
+    --highlight-green: rgba(46, 204, 113, 0.2);
+    --highlight-orange: rgba(255, 152, 0, 0.2);
+    --tape: rgba(255, 255, 255, 0.45);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #3d3d3d;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    font-family: 'Kalam', cursive;
+    overflow-x: hidden;
+  }
+
+  .desk { position: relative; width: 100%; max-width: 920px; }
+
+  .notebook {
+    position: relative;
+    background: var(--paper-bg);
+    background-image:
+      linear-gradient(90deg, transparent 79px, #e8d5b5 79px, #e8d5b5 81px, transparent 81px),
+      linear-gradient(var(--paper-line) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 2.4rem;
+    background-position: 0 0, 0 0;
+    border-radius: 4px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.15),
+      0 4px 8px rgba(0,0,0,0.12),
+      0 8px 16px rgba(0,0,0,0.1),
+      0 16px 32px rgba(0,0,0,0.08),
+      15px 25px 40px rgba(0,0,0,0.15);
+    padding: 3rem 2.5rem 3rem 6rem;
+    line-height: 2.4rem;
+    color: var(--ink-black);
+    transform: rotate(-0.3deg);
+    animation: paperFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes paperFloat {
+    0%, 100% { transform: rotate(-0.3deg) translateY(0); }
+    50% { transform: rotate(-0.1deg) translateY(-3px); }
+  }
+
+  /* ===== 螺旋装订 ===== */
+  .spiral-holes {
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2rem 0;
+  }
+  .hole {
+    width: 14px;
+    height: 14px;
+    background: #3d3d3d;
+    border-radius: 50%;
+    box-shadow: inset 1px 1px 2px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .hole::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 6px;
+    background: linear-gradient(180deg, #888 0%, #bbb 50%, #888 100%);
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  }
+
+  /* ===== 装饰元素 ===== */
+  .tape {
+    position: absolute;
+    width: 120px;
+    height: 35px;
+    background: var(--tape);
+    opacity: 0.6;
+    transform: rotate(-3deg);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    backdrop-filter: blur(1px);
+  }
+  .tape.top-left { top: -12px; left: 40px; transform: rotate(-4deg); }
+  .tape.top-right { top: -10px; right: 60px; transform: rotate(3deg); width: 100px; }
+
+  .paperclip {
+    position: absolute;
+    top: 40px;
+    right: 30px;
+    width: 30px;
+    height: 70px;
+    border: 3px solid #b0b0b0;
+    border-radius: 0 0 15px 15px;
+    border-top: none;
+    transform: rotate(-5deg);
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+    z-index: 10;
+  }
+  .paperclip::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 6px;
+    width: 12px;
+    height: 25px;
+    border: 3px solid #b0b0b0;
+    border-bottom: none;
+    border-radius: 15px 15px 0 0;
+  }
+  .coffee-stain {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid rgba(139, 90, 43, 0.12);
+    box-shadow:
+      0 0 0 8px rgba(139, 90, 43, 0.06),
+      0 0 0 16px rgba(139, 90, 43, 0.03);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .coffee-stain.one { bottom: 60px; right: 40px; }
+  .coffee-stain.two { top: 200px; left: 100px; opacity: 0.5; }
+
+  .folded-corner {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, transparent 50%, var(--paper-dark) 50%);
+    border-bottom-right-radius: 4px;
+    box-shadow: -2px -2px 4px rgba(0,0,0,0.08);
+  }
+  .doodle { position: absolute; pointer-events: none; opacity: 0.7; }
+
+  /* ===== 标题系统 ===== */
+  .title {
+    font-family: 'Zeyada', cursive;
+    font-size: 3.2rem;
+    font-weight: 700;
+    color: var(--ink-black);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    position: relative;
+    display: inline-block;
+  }
+  .title-underline {
+    position: absolute;
+    bottom: 2px;
+    left: -5px;
+    right: -10px;
+    height: 8px;
+    background: var(--highlight-yellow);
+    z-index: -1;
+    border-radius: 4px;
+    transform: rotate(-1deg);
+  }
+  .subtitle {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.3rem;
+    color: var(--ink-blue);
+    margin-bottom: 1.0rem;
+    transform: rotate(-0.5deg);
+  }
+  .date-badge {
+    display: inline-block;
+    font-size: 0.95rem;
+    color: var(--ink-blue);
+    margin-bottom: 1.6rem;
+    transform: rotate(-1deg);
+  }
+
+  /* ===== 段落系统 ===== */
+  .section { margin-bottom: 2rem; position: relative; }
+  .section-title {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--ink-red);
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    position: relative;
+  }
+  .section-title i { margin-right: 0.35rem; vertical-align: -2px; }
+  .section-title .marker-underline {
+    position: absolute;
+    bottom: 0;
+    left: -3px;
+    right: -5px;
+    height: 4px;
+    background: var(--ink-red);
+    opacity: 0.3;
+    border-radius: 2px;
+  }
+  .content { font-size: 1.15rem; }
+
+  /* ===== 文字样式 ===== */
+  .highlight { background: var(--highlight-yellow); padding: 0 4px; border-radius: 4px; }
+  .highlight-pink { background: var(--highlight-pink); padding: 0 4px; border-radius: 4px; }
+  .highlight-green { background: var(--highlight-green); padding: 0 4px; border-radius: 4px; }
+  .highlight-orange { background: var(--highlight-orange); padding: 0 4px; border-radius: 4px; }
+  .red-text { color: var(--ink-red); font-weight: 700; }
+  .blue-text { color: var(--ink-blue); }
+  .green-text { color: var(--ink-green); font-weight: 700; }
+  .purple-text { color: var(--ink-purple); }
+  .orange-text { color: var(--ink-orange); font-weight: 700; }
+  .code-term { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; text-decoration: underline; }
+  .double-underline { border-bottom: 3px double rgba(192, 57, 43, 0.85); padding-bottom: 1px; }
+
+  /* ===== 徽章 ===== */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    line-height: 1.6rem;
+    background: rgba(192, 57, 43, 0.12);
+    color: var(--ink-red);
+    border: 1px solid rgba(192, 57, 43, 0.18);
+    margin-right: 6px;
+    transform: rotate(-0.3deg);
+  }
+  .badge.blue { background: rgba(41, 128, 185, 0.12); color: var(--ink-blue); border-color: rgba(41, 128, 185, 0.18); }
+  .badge.green { background: rgba(39, 174, 96, 0.12); color: var(--ink-green); border-color: rgba(39, 174, 96, 0.18); }
+  .badge.purple { background: rgba(142, 68, 173, 0.12); color: var(--ink-purple); border-color: rgba(142, 68, 173, 0.18); }
+  .badge.orange { background: rgba(230, 126, 34, 0.12); color: var(--ink-orange); border-color: rgba(230, 126, 34, 0.18); }
+
+  /* ===== 分割线 ===== */
+  .divider {
+    margin: 1.6rem 0 1.2rem;
+    text-align: center;
+    position: relative;
+  }
+  .divider::before, .divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 38%;
+    height: 2px;
+    background: rgba(44, 44, 44, 0.18);
+  }
+  .divider::before { left: 0; transform: rotate(-0.4deg); }
+  .divider::after { right: 0; transform: rotate(0.4deg); }
+  .divider-text {
+    display: inline-block;
+    padding: 0 12px;
+    font-family: 'Patrick Hand', cursive;
+    color: var(--ink-purple);
+    font-size: 1.05rem;
+    background: var(--paper-bg);
+  }
+
+  /* ===== 流程 ===== */
+  .flow-box {
+    margin: 0.9rem 0 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .flow-item {
+    background: rgba(41, 128, 185, 0.10);
+    border: 1px solid rgba(41, 128, 185, 0.18);
+    border-radius: 10px;
+    padding: 6px 10px;
+    font-family: 'Patrick Hand', cursive;
+  }
+  .flow-arrow { color: rgba(44, 44, 44, 0.55); font-size: 1.2rem; }
+
+  /* ===== 对比框 ===== */
+  .compare-box {
+    border: 2px dashed rgba(44, 44, 44, 0.22);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin: 0.8rem 0 1.2rem;
+    background: rgba(255,255,255,0.35);
+  }
+  .compare-row { display: flex; gap: 10px; margin: 8px 0; align-items: baseline; }
+  .compare-label {
+    min-width: 72px;
+    text-align: center;
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-family: 'Patrick Hand', cursive;
+    border: 1px solid rgba(44, 44, 44, 0.18);
+    background: rgba(44, 44, 44, 0.06);
+  }
+  .compare-label.old { color: var(--ink-red); background: rgba(192,57,43,0.10); border-color: rgba(192,57,43,0.18); }
+  .compare-label.new { color: var(--ink-green); background: rgba(39,174,96,0.10); border-color: rgba(39,174,96,0.18); }
+
+  /* ===== 步骤列表 ===== */
+  .attack-flow { margin: 0.9rem 0 1.2rem; }
+  .attack-step { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0; }
+  .step-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(192,57,43,0.12);
+    border: 1px solid rgba(192,57,43,0.22);
+    color: var(--ink-red);
+    font-family: 'Patrick Hand', cursive;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    transform: rotate(-1deg);
+  }
+
+  /* ===== 大警告 ===== */
+  .big-warning {
+    border: 2px solid rgba(192, 57, 43, 0.38);
+    border-radius: 12px;
+    padding: 12px 14px;
+    background:
+      repeating-linear-gradient(
+        -45deg,
+        rgba(192, 57, 43, 0.05),
+        rgba(192, 57, 43, 0.05) 10px,
+        rgba(255, 255, 255, 0.18) 10px,
+        rgba(255, 255, 255, 0.18) 20px
+      );
+    color: var(--ink-red);
+    font-family: 'Patrick Hand', cursive;
+    margin: 0.8rem 0 1.2rem;
+    transform: rotate(-0.2deg);
+  }
+
+  /* ===== 网格列表 ===== */
+  .os-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 0.8rem 0 1.2rem;
+  }
+  .os-item {
+    border: 1px solid rgba(44,44,44,0.18);
+    border-radius: 12px;
+    padding: 8px 10px;
+    background: rgba(255,255,255,0.4);
+    font-family: 'Patrick Hand', cursive;
+  }
+  .os-item.danger { border-color: rgba(192,57,43,0.28); background: rgba(192,57,43,0.06); color: var(--ink-red); }
+
+  /* ===== 总结框 ===== */
+  .summary-box {
+    border: 2px solid rgba(41, 128, 185, 0.35);
+    border-radius: 14px;
+    padding: 12px 14px;
+    background: rgba(41,128,185,0.06);
+    margin: 1.0rem 0 0.2rem;
+  }
+  .summary-title {
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1.25rem;
+    color: var(--ink-blue);
+    margin-bottom: 0.4rem;
+  }
+
+  /* ===== write-in 动画 ===== */
+  .write-in {
+    opacity: 0;
+    transform: translateY(12px);
+    animation: writeIn 0.6s ease forwards;
+  }
+  @keyframes writeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== 响应式 ===== */
+  @media (max-width: 768px) {
+    .notebook {
+      padding: 2rem 1.5rem 2rem 4rem;
+      background-position: 0 0, 0 0;
+      background-image:
+        linear-gradient(90deg, transparent 59px, #e8d5b5 59px, #e8d5b5 61px, transparent 61px),
+        linear-gradient(var(--paper-line) 1px, transparent 1px);
+    }
+    .title { font-size: 2.2rem; }
+    .content { font-size: 1rem; }
+    .os-grid { grid-template-columns: repeat(2, 1fr); }
+    .spiral-holes { left: 12px; width: 40px; }
+    .hole { width: 10px; height: 10px; }
+    .hole::after { width: 22px; height: 5px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="desk">
+  <div class="notebook">
+    <!-- 螺旋装订孔 -->
+    <div class="spiral-holes">
+      <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+      <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+      <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+      <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+      <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+      <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+      <div class="hole"></div><div class="hole"></div><div class="hole"></div>
+    </div>
+
+    <!-- 装饰元素 -->
+    <div class="tape top-left"></div>
+    <div class="tape top-right"></div>
+    <div class="paperclip"></div>
+    <div class="coffee-stain one"></div>
+    <div class="coffee-stain two"></div>
+    <div class="folded-corner"></div>
+
+    <!-- 装饰图标（Lucide；不使用 emoji） -->
+    <div class="doodle" style="top:70px;right:86px;font-size:2.1rem;transform:rotate(12deg);opacity:0.12;"><i class="lucide-lock"></i></div>
+    <div class="doodle" style="top:140px;right:70px;font-size:2.0rem;transform:rotate(-8deg);opacity:0.12;"><i class="lucide-alert-triangle"></i></div>
+    <div class="doodle" style="top:210px;right:82px;font-size:2.0rem;transform:rotate(10deg);opacity:0.12;"><i class="lucide-database"></i></div>
+
+    <!-- ===== 标题 ===== -->
+    <div class="title write-in" style="animation-delay: 0.1s; animation-play-state: running;">
+      作業系統 Chapter 06–10
+      <div class="title-underline"></div>
+    </div>
+    <div class="subtitle write-in" style="animation-delay: 0.3s; animation-play-state: running;">
+      同步工具 → 同步經典題 → 死結 → 主記憶體 → 虛擬記憶體
+    </div>
+    <div class="date-badge write-in" style="animation-delay: 0.4s; animation-play-state: running;">
+      2026.06.15 ｜<span class="badge blue">OS</span><span class="badge purple">Concurrency</span><span class="badge orange">Memory</span>
+    </div>
+
+    <div class="divider write-in" style="animation-delay: 0.55s; animation-play-state: running;">
+      <span class="divider-text">Chapter 06 · Synchronization Tools</span>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 0.65s; animation-play-state: running;">
+        <i class="lucide-zap"></i> 先把問題講清楚
+        <div class="marker-underline"></div>
+      </div>
+      <div class="content write-in" style="animation-delay: 0.75s; animation-play-state: running;">
+        多個行程/執行緒同時存取<span class="highlight">共享資料</span>時，若互相交錯執行就會發生<span class="red-text">race condition</span>（資料不一致）。<br>
+        關鍵就是「<span class="highlight">critical section</span>」：同一時間只能讓一個人進去做會改共享狀態的事情。
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 0.85s; animation-play-state: running;">
+        <i class="lucide-settings"></i> 常用工具一口氣整理
+        <div class="marker-underline"></div>
+      </div>
+      <div class="content write-in" style="animation-delay: 0.95s; animation-play-state: running;">
+        <span class="badge">Mutex lock</span>：最直覺，進入前 <span class="code-term">lock()</span>、離開後 <span class="code-term">unlock()</span>。<br>
+        <span class="badge blue">Semaphore</span>：用 <span class="code-term">wait(P)</span> / <span class="code-term">signal(V)</span> 控制資源數量（二元/計數）。<br>
+        <span class="badge purple">Monitor</span> + <span class="code-term">condition variable</span>：把互斥與條件等待封裝在高階抽象中。<br>
+        <span class="badge orange">CAS / atomic</span>：靠硬體原子指令做「無鎖/低鎖」保護，適合某些高競爭情境。
+      </div>
+
+      <div class="compare-box write-in" style="animation-delay: 1.05s; animation-play-state: running;">
+        <div class="compare-row">
+          <span class="compare-label old">悲觀鎖</span>
+          <span>Mutex：先鎖起來再做，<span class="highlight-orange">高競爭時更穩</span>，但有鎖開銷。</span>
+        </div>
+        <div class="compare-row">
+          <span class="compare-label new">樂觀 CAS</span>
+          <span>CAS：先做再比對，<span class="highlight-green">無/少鎖</span>，競爭不高到中等通常更快。</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 1.15s; animation-play-state: running;">
+        <i class="lucide-alert-triangle"></i> Liveness 會考陷阱
+        <div class="marker-underline"></div>
+      </div>
+      <div class="content write-in" style="animation-delay: 1.25s; animation-play-state: running;">
+        <span class="highlight-pink">Deadlock</span>（互卡）與 <span class="highlight-pink">Starvation</span>（一直輪不到）是兩個不同概念。<br>
+        另外還有<span class="red-text">priority inversion</span>：低優先序拿著鎖，高優先序等鎖卻被中優先序一直插隊。常見解法：<span class="highlight">priority inheritance</span>（讓低優先序暫時繼承高優先序）。
+      </div>
+    </div>
+
+    <div class="divider write-in" style="animation-delay: 1.35s; animation-play-state: running;">
+      <span class="divider-text">Chapter 07 · Synchronization Examples</span>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 1.45s; animation-play-state: running;">
+        <i class="lucide-code"></i> 三大經典同步題
+        <div class="marker-underline"></div>
+      </div>
+      <div class="content write-in" style="animation-delay: 1.55s; animation-play-state: running;">
+        這三題基本上是拿來「測」同步機制到底會不會出事：緩衝區、讀者寫者、哲學家用餐。<br>
+        考試重點通常不是背程式，而是能說清楚：<span class="highlight">要保護什麼共享狀態</span>、<span class="highlight">用哪個同步原語</span>、<span class="highlight">怎麼避免死結/飢餓</span>。
+      </div>
+      <div class="os-grid write-in" style="animation-delay: 1.65s; animation-play-state: running;">
+        <span class="os-item">Bounded-Buffer：<span class="code-term">empty/full/mutex</span></span>
+        <span class="os-item">Readers-Writers：<span class="code-term">readcount</span> + 互斥</span>
+        <span class="os-item danger">Dining Philosophers：避免 cycle</span>
+        <span class="os-item">Producer/Consumer：共享 buffer</span>
+        <span class="os-item">RW：公平性設計</span>
+        <span class="os-item danger">DP：拿鎖順序</span>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 1.75s; animation-play-state: running;">
+        <i class="lucide-lightbulb"></i> 另類解法（觀念題常出）
+        <div class="marker-underline"></div>
+      </div>
+      <div class="content write-in" style="animation-delay: 1.85s; animation-play-state: running;">
+        <span class="badge purple">Transactional Memory</span>：把一段記憶體讀寫當成「交易」；成功就 commit，失敗就 rollback。<br>
+        <span class="badge blue">OpenMP</span>：用 <span class="code-term">#pragma omp critical</span> 把區塊當成 critical section。<br>
+        <span class="badge green">Functional</span>：資料不可變（immutable），減少共享可變狀態，自然降低 data race。
+      </div>
+    </div>
+
+    <div class="divider write-in" style="animation-delay: 1.95s; animation-play-state: running;">
+      <span class="divider-text">Chapter 08 · Deadlocks</span>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 2.05s; animation-play-state: running;">
+        <i class="lucide-alert-triangle"></i> 死結四條件（必背）
+        <div class="marker-underline"></div>
+      </div>
+      <div class="big-warning write-in" style="animation-delay: 2.15s; animation-play-state: running;">
+        死結不是「很慢」而已，是：<span class="double-underline">四個必要條件同時成立</span>才會卡死。拆掉其中任一條就能避免。
+      </div>
+      <div class="content write-in" style="animation-delay: 2.25s; animation-play-state: running;">
+        1) <span class="highlight">Mutual exclusion</span>（資源不可共享）<br>
+        2) <span class="highlight">Hold and wait</span>（手上拿著還想再等）<br>
+        3) <span class="highlight">No preemption</span>（不能硬搶走）<br>
+        4) <span class="highlight">Circular wait</span>（等待形成環）
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 2.35s; animation-play-state: running;">
+        <i class="lucide-network"></i> 處理策略（從簡到硬）
+        <div class="marker-underline"></div>
+      </div>
+      <div class="flow-box write-in" style="animation-delay: 2.45s; animation-play-state: running;">
+        <span class="flow-item">Ignore</span>
+        <span class="flow-arrow">➞</span>
+        <span class="flow-item">Prevention</span>
+        <span class="flow-arrow">➞</span>
+        <span class="flow-item">Avoidance（Banker）</span>
+        <span class="flow-arrow">➞</span>
+        <span class="flow-item">Detection + Recovery</span>
+      </div>
+      <div class="content write-in" style="animation-delay: 2.55s; animation-play-state: running;">
+        <span class="badge">Prevention</span>：用規則「讓四條件不可能同時成立」（例如固定拿鎖順序打掉 circular wait）。<br>
+        <span class="badge blue">Avoidance</span>：每次分配前都判斷系統是否仍在<span class="highlight">safe state</span>（銀行家演算法）。<br>
+        <span class="badge orange">Detection</span>：允許死結發生後再偵測；接著<span class="red-text">terminate</span> 或 <span class="red-text">resource preemption</span> 做恢復。
+      </div>
+    </div>
+
+    <div class="divider write-in" style="animation-delay: 2.65s; animation-play-state: running;">
+      <span class="divider-text">Chapter 09 · Main Memory</span>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 2.75s; animation-play-state: running;">
+        <i class="lucide-map"></i> 位址翻譯核心
+        <div class="marker-underline"></div>
+      </div>
+      <div class="content write-in" style="animation-delay: 2.85s; animation-play-state: running;">
+        <span class="highlight">Logical address</span> 是程式看到的；<span class="highlight">Physical address</span> 是記憶體實際位置。<br>
+        <span class="blue-text">MMU</span> 負責翻譯：在 paging 系統裡最常見公式是<br>
+        <span class="code-term">physical = frame_number × page_size + offset</span>。
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 2.95s; animation-play-state: running;">
+        <i class="lucide-layout-grid"></i> 配置方式：連續 vs 分頁
+        <div class="marker-underline"></div>
+      </div>
+      <div class="compare-box write-in" style="animation-delay: 3.05s; animation-play-state: running;">
+        <div class="compare-row">
+          <span class="compare-label old">Contiguous</span>
+          <span>first-fit / best-fit / worst-fit；問題是 <span class="highlight-pink">external fragmentation</span>。</span>
+        </div>
+        <div class="compare-row">
+          <span class="compare-label new">Paging</span>
+          <span>把記憶體切成 page/frame；避免外部碎裂，但會有<span class="highlight-orange">page table / TLB</span>成本。</span>
+        </div>
+      </div>
+      <div class="content write-in" style="animation-delay: 3.15s; animation-play-state: running;">
+        碎裂記住一句：<span class="red-text">internal</span> 是「分到但用不完」；<span class="red-text">external</span> 是「有空但不連續」。
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 3.25s; animation-play-state: running;">
+        <i class="lucide-hard-drive"></i> Swapping（現代常見變形）
+        <div class="marker-underline"></div>
+      </div>
+      <div class="content write-in" style="animation-delay: 3.35s; animation-play-state: running;">
+        經典 swapping：把整個行程暫時換出到 backing store，再換回來；但現代多改成<span class="highlight">page-in/page-out</span>。<br>
+        行動裝置通常不做傳統 swapping（快閃寫入次數/吞吐限制），改用要求 App 釋放記憶體或直接終止（並保存狀態）。
+      </div>
+    </div>
+
+    <div class="divider write-in" style="animation-delay: 3.45s; animation-play-state: running;">
+      <span class="divider-text">Chapter 10 · Virtual Memory</span>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 3.55s; animation-play-state: running;">
+        <i class="lucide-file"></i> Demand Paging：一次 page fault 會發生什麼
+        <div class="marker-underline"></div>
+      </div>
+      <div class="attack-flow write-in" style="animation-delay: 3.65s; animation-play-state: running;">
+        <div class="attack-step"><span class="step-num">1</span><span>存取到不在記憶體的 page → 觸發 trap（page fault）。</span></div>
+        <div class="attack-step"><span class="step-num">2</span><span>OS 檢查位址合法性，不合法就終止；合法就找 free frame。</span></div>
+        <div class="attack-step"><span class="step-num">3</span><span>排程磁碟 I/O 把 page 載入；更新 page table / TLB。</span></div>
+        <div class="attack-step"><span class="step-num">4</span><span>重新啟動被中斷的指令，程式「感覺」像一切正常。</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 3.75s; animation-play-state: running;">
+        <i class="lucide-repeat"></i> Page Replacement：三個最常考
+        <div class="marker-underline"></div>
+      </div>
+      <div class="content write-in" style="animation-delay: 3.85s; animation-play-state: running;">
+        <span class="badge">FIFO</span>：最簡單，但可能有 <span class="highlight-pink">Belady anomaly</span>。<br>
+        <span class="badge blue">OPT</span>：理論最優（需要知道未來），通常用來當比較基準。<br>
+        <span class="badge purple">LRU</span>：利用 locality 假設「最近用過的還會再用」，實作可用近似法。
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 3.95s; animation-play-state: running;">
+        <i class="lucide-activity"></i> Thrashing：一直 fault 就不是你寫爛，是系統在抖
+        <div class="marker-underline"></div>
+      </div>
+      <div class="big-warning write-in" style="animation-delay: 4.05s; animation-play-state: running;">
+        Working set 放不進可用 frames → page fault 爆炸 → CPU 利用率反而下降：這叫 <span class="double-underline">thrashing</span>。
+      </div>
+      <div class="content write-in" style="animation-delay: 4.15s; animation-play-state: running;">
+        典型對策：增加 frames、降低 multiprogramming、或用 working-set / page-fault frequency 控制記憶體配置。
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title write-in" style="animation-delay: 4.25s; animation-play-state: running;">
+        <i class="lucide-search"></i> 其他常考小公式/例子
+        <div class="marker-underline"></div>
+      </div>
+      <div class="content write-in" style="animation-delay: 4.35s; animation-play-state: running;">
+        <span class="highlight">TLB Reach</span>：<span class="code-term">(TLB Size) × (Page Size)</span>。理想情況是每個行程的 working set 都能被 TLB 覆蓋。<br>
+        程式結構也會影響 fault：例如 2D 陣列的存取順序（row-major vs column-major）會讓 page fault 數量差很多。<br>
+        I/O interlock：某些 I/O 期間頁面必須被<span class="highlight">pin</span>住，避免被換出。
+      </div>
+    </div>
+
+    <div class="summary-box write-in" style="animation-delay: 4.45s; animation-play-state: running;">
+      <div class="summary-title">最後收斂：一張腦內地圖</div>
+      <div class="content">
+        Concurrency：先處理<span class="highlight">互斥</span>（CS），再處理<span class="highlight">公平/活性</span>（starvation、priority inversion）。<br>
+        Deadlock：四條件 + 四方法（預防/避免/偵測/恢復）。<br>
+        Memory：主記憶體翻譯（MMU, paging, TLB）→ 虛擬記憶體（demand paging、replacement、thrashing）。
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.style.animationPlayState = 'running';
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.write-in').forEach(el => {
+      el.style.animationPlayState = 'paused';
+      observer.observe(el);
+    });
+
+    setTimeout(() => {
+      document.querySelectorAll('.write-in').forEach(el => {
+        el.style.animationPlayState = 'running';
+      });
+    }, 100);
+  });
+</script>
+
+
+
+</body></html>
