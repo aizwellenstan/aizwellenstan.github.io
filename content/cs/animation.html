@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<!-- saved from url=(0169)file:///Users/raphtalia/Library/Application%20Support/TRAE%20SOLO/ModularData/ai-agent/work-mode-projects/6a2fa3022223bf62f46d7833/OS_Ch06-10_PPT_%E6%BC%94%E7%A4%BA.html -->
+<!-- saved from url=(0176)file:///Users/raphtalia/Library/Application%20Support/TRAE%20SOLO/ModularData/ai-agent/work-mode-projects/6a2fa3022223bf62f46d7833/OS_Ch06-10_PPT_%E6%BC%94%E7%A4%BA_iPhone.html -->
 <html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>操作系统 Ch6–Ch10｜PPT演示</title>
+  <title>操作系统 Ch6–Ch10｜PPT演示（iPhone自适应）</title>
   <link rel="preconnect" href="https://fonts.googleapis.com/">
   <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-  <link href="./操作系统 Ch6–Ch10｜PPT演示_files/css2" rel="stylesheet">
-  <link href="./操作系统 Ch6–Ch10｜PPT演示_files/all.min.css" rel="stylesheet">
+  <link href="./操作系统 Ch6–Ch10｜PPT演示（iPhone自适应）_files/css2" rel="stylesheet">
+  <link href="./操作系统 Ch6–Ch10｜PPT演示（iPhone自适应）_files/all.min.css" rel="stylesheet">
   <style>
     :root{
       --bg:#0b1020;
@@ -27,15 +27,15 @@
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
     body{
-      font-family:"Noto Sans SC", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family:"Noto Sans SC", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
       background: radial-gradient(1200px 700px at 60% 20%, rgba(0,217,255,.14), transparent 55%),
                   radial-gradient(900px 620px at 15% 78%, rgba(167,139,250,.14), transparent 55%),
                   linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%);
       color:var(--text);
       overflow:hidden;
+      height:100svh; /* iOS Safari address bar friendly */
     }
 
-    /* background grid */
     .bg-grid{
       position:absolute; inset:0;
       background-image:
@@ -45,31 +45,27 @@
       pointer-events:none;
       opacity:.9;
     }
-    .orb{
-      position:absolute; border-radius:999px; filter:blur(90px);
-      opacity:.16; pointer-events:none;
-      animation: orbFloat 8s ease-in-out infinite alternate;
-    }
+    .orb{position:absolute; border-radius:999px; filter:blur(90px); opacity:.16; pointer-events:none; animation: orbFloat 8s ease-in-out infinite alternate;}
     .orb.c1{width:520px;height:520px;background:var(--cyan); top:-180px; right:-180px}
     .orb.c2{width:420px;height:420px;background:var(--purple); bottom:-160px; left:-140px; animation-delay:-4s}
     @keyframes orbFloat{from{transform:translate(0,0) scale(1)} to{transform:translate(36px,-28px) scale(1.08)}}
 
-    /* deck */
-    .deck{position:relative; width:100%; height:100%;}
+    .deck{position:relative; width:100%; height:100%; height:100svh;}
     .slide{
       position:absolute; inset:0;
       display:flex; flex-direction:column; justify-content:center;
       padding:56px 84px;
       opacity:0; pointer-events:none;
       transition: opacity .35s ease;
+      overflow:hidden;
     }
-    .slide.active{opacity:1; pointer-events:auto;}
-    .stage{
-      width:min(1100px, 100%);
-      margin:0 auto;
+    .slide.active{
+      opacity:1; pointer-events:auto;
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
     }
+    .stage{width:min(1100px, 100%); margin:0 auto; padding-bottom:96px;}
 
-    /* typography */
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       padding:10px 18px;
@@ -82,55 +78,25 @@
       font-size:18px;
       box-shadow: 0 10px 32px rgba(0,217,255,.08);
     }
-    .title{
-      font-size:58px;
-      font-weight:800;
-      line-height:1.18;
-      margin-top:18px;
-      letter-spacing:.2px;
-    }
-    .subtitle{
-      margin-top:14px;
-      font-size:26px;
-      line-height:1.55;
-      color:var(--muted);
-      max-width: 980px;
-    }
-    .divider{
-      width:92px; height:5px; border-radius:999px;
-      background: linear-gradient(90deg, var(--cyan), var(--teal));
-      margin:18px 0 22px;
-    }
-    .h2{
-      display:flex; align-items:center; gap:12px;
-      font-size:46px;
-      font-weight:800;
-      letter-spacing:.2px;
-    }
+    .title{font-size:58px; font-weight:800; line-height:1.18; margin-top:18px; letter-spacing:.2px;}
+    .subtitle{margin-top:14px; font-size:26px; line-height:1.55; color:var(--muted); max-width:980px;}
+    .divider{width:92px; height:5px; border-radius:999px; background: linear-gradient(90deg, var(--cyan), var(--teal)); margin:18px 0 22px;}
+    .h2{display:flex; align-items:center; gap:12px; font-size:46px; font-weight:800; letter-spacing:.2px;}
     .h2 i{color:var(--cyan)}
-    .muted{color:var(--muted)}
     .hl{color:var(--cyan); font-weight:800}
     .hl2{color:var(--teal); font-weight:800}
     .warn{color:var(--red); font-weight:800}
-    .tag{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 14px; border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
-      color:rgba(255,255,255,.86);
-      font-weight:700;
-      font-size:16px;
+    .hl-bg{
+      display:inline-block;
+      padding:0 10px;
+      border-radius:8px;
+      border:1px solid rgba(0,217,255,.22);
+      background: rgba(0,217,255,.10);
+      color: rgba(234,240,255,.95);
+      font-weight: 800;
     }
-    .tag i{opacity:.9}
 
-    /* layout blocks */
-    .grid{
-      display:grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap:18px;
-      margin-top:18px;
-      align-items:stretch;
-    }
+    .grid{display:grid; grid-template-columns: 1.25fr 1fr; gap:18px; margin-top:18px; align-items:stretch;}
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,.06) 0%, rgba(255,255,255,.03) 100%);
       border:1px solid rgba(255,255,255,.12);
@@ -148,53 +114,23 @@
                   radial-gradient(560px 200px at 90% 10%, rgba(45,212,191,.10), transparent 55%);
       pointer-events:none;
       opacity:.7;
-      filter: blur(0px);
     }
     .card > *{position:relative; z-index:1}
-    .card h3{
-      font-size:22px;
-      font-weight:800;
-      letter-spacing:.2px;
-      display:flex; align-items:center; gap:10px;
-      margin-bottom:10px;
-    }
+    .card h3{font-size:22px; font-weight:800; letter-spacing:.2px; display:flex; align-items:center; gap:10px; margin-bottom:10px;}
     .card h3 i{color:var(--teal)}
     .bullets{margin-top:8px; display:flex; flex-direction:column; gap:10px;}
-    .bullet{
-      display:flex; gap:12px; align-items:flex-start;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(15, 23, 42, .35);
-    }
+    .bullet{display:flex; gap:12px; align-items:flex-start; padding:10px 12px; border-radius:14px; border:1px solid rgba(255,255,255,.10); background: rgba(15, 23, 42, .35);}
     .bullet i{color:var(--cyan); margin-top:4px}
-    .bullet .t{
-      font-size:22px;
-      line-height:1.55;
-      color:rgba(234,240,255,.9);
-    }
+    .bullet .t{font-size:22px; line-height:1.55; color:rgba(234,240,255,.9);}
     .bullet .t small{display:block; color:var(--muted); font-size:18px; margin-top:3px}
 
-    /* mini diagrams */
-    .svg-box{
-      border:1px dashed rgba(255,255,255,.18);
-      border-radius:16px;
-      padding:14px;
-      background: rgba(16,27,49,.35);
-      overflow:hidden;
-    }
-    .svg-title{
-      display:flex; align-items:center; gap:10px;
-      font-size:20px;
-      font-weight:800;
-      margin-bottom:10px;
-      color:rgba(234,240,255,.88);
-    }
+    .svg-box{border:1px dashed rgba(255,255,255,.18); border-radius:16px; padding:14px; background: rgba(16,27,49,.35); overflow:hidden;}
+    .svg-title{display:flex; align-items:center; gap:10px; font-size:20px; font-weight:800; margin-bottom:10px; color:rgba(234,240,255,.88);}
     .svg-title i{color:var(--orange)}
 
-    /* nav */
     .nav{
-      position:absolute; left:0; right:0; bottom:22px;
+      position:absolute; left:0; right:0;
+      bottom: calc(14px + env(safe-area-inset-bottom));
       display:flex; align-items:center; justify-content:center;
       gap:14px;
       pointer-events:none;
@@ -208,13 +144,7 @@
       backdrop-filter: blur(10px);
       pointer-events:auto;
     }
-    .dot{
-      width:10px; height:10px; border-radius:50%;
-      background: rgba(255,255,255,.22);
-      border:1px solid rgba(255,255,255,.12);
-      cursor:pointer;
-      transition: transform .2s ease, background .2s ease;
-    }
+    .dot{width:10px; height:10px; border-radius:50%; background: rgba(255,255,255,.22); border:1px solid rgba(255,255,255,.12); cursor:pointer; transition: transform .2s ease, background .2s ease;}
     .dot.active{background: var(--cyan); transform: scale(1.25)}
     .btn{
       width:44px; height:44px; border-radius:14px;
@@ -228,7 +158,9 @@
     .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.10)}
     .btn i{color:rgba(234,240,255,.92)}
     .hint{
-      position:absolute; top:18px; right:18px;
+      position:absolute;
+      top: calc(14px + env(safe-area-inset-top));
+      right: calc(14px + env(safe-area-inset-right));
       font-size:16px; color:rgba(234,240,255,.55);
       border:1px solid rgba(255,255,255,.10);
       background: rgba(0,0,0,.18);
@@ -237,7 +169,6 @@
       backdrop-filter: blur(10px);
     }
 
-    /* animation items */
     .an, .anim-item{
       opacity:0;
       transform: translateY(32px);
@@ -246,7 +177,6 @@
     }
     .an.show, .anim-item.show{opacity:1; transform: translateY(0)}
 
-    /* responsive */
     @media (max-width: 960px){
       .slide{padding:36px 22px}
       .title{font-size:44px}
@@ -256,17 +186,33 @@
       .bullet .t{font-size:20px}
       .hint{display:none}
     }
+
+    @media (max-width: 430px){
+      .slide{padding:22px 14px}
+      .kicker{font-size:15px; padding:8px 14px}
+      .title{font-size: clamp(30px, 7.5vw, 40px); margin-top:14px}
+      .h2{font-size: clamp(24px, 6.5vw, 32px)}
+      .subtitle{font-size: 16px; line-height: 1.6}
+      .divider{margin: 14px 0 18px; width:72px}
+      .card{padding:14px 14px 12px}
+      .card h3{font-size:18px}
+      .bullet{padding:10px 10px}
+      .bullet .t{font-size:16px}
+      .bullet .t small{font-size:14px}
+      .svg-title{font-size:16px}
+      .btn{width:48px; height:48px}
+      .dot{width:9px; height:9px}
+      .stage{padding-bottom:112px}
+    }
   </style>
 </head>
 <body>
   <div class="bg-grid"></div>
   <div class="orb c1"></div>
   <div class="orb c2"></div>
-
   <div class="hint">切换：← → / 空格</div>
 
   <div class="deck" id="deck">
-    <!-- Slide 1 -->
     <section class="slide active" data-title="封面">
       <div class="stage">
         <div class="kicker an anim-item"><i class="fa-solid fa-graduation-cap"></i> 复习演示</div>
@@ -279,12 +225,11 @@
           用 <span class="hl2">PPT轮播</span> 把关键概念“压缩到脑内地图”：<span class="hl-bg">Ch6</span> 同步工具、<span class="hl-bg">Ch7</span> 经典同步问题、<span class="hl-bg">Ch8</span> 死锁、<span class="hl-bg">Ch9</span> 主存、<span class="hl-bg">Ch10</span> 虚拟内存。
         </div>
         <div class="subtitle an anim-item" data-delay="420" style="font-size:20px">
-          重点提示：全程不使用 emoji 图标，统一用 Font Awesome 图标库。
+          说明：图标统一用 Font Awesome（无 emoji），并针对 iPhone 做了可滚动与安全区适配。
         </div>
       </div>
     </section>
 
-    <!-- Slide 2: Ch6 -->
     <section class="slide" data-title="Ch6 同步工具">
       <div class="stage">
         <div class="h2 an anim-item"><i class="fa-solid fa-lock"></i> Chapter 06 · Synchronization Tools</div>
@@ -337,31 +282,12 @@
                   <small>常用对策：priority inheritance</small>
                 </div>
               </div>
-              <div class="svg-box" style="margin-top:4px">
-                <div class="svg-title"><i class="fa-solid fa-diagram-project"></i> 一句话图示：临界区</div>
-                <svg viewBox="0 0 620 150" width="100%" height="150" role="img" aria-label="critical section">
-                  <defs>
-                    <lineargradient id="g1" x1="0" x2="1">
-                      <stop offset="0" stop-color="#00d9ff" stop-opacity="0.85"></stop>
-                      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0.85"></stop>
-                    </lineargradient>
-                  </defs>
-                  <rect x="10" y="18" width="600" height="114" rx="18" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"></rect>
-                  <rect x="70" y="54" width="220" height="44" rx="14" fill="rgba(0,217,255,0.10)" stroke="rgba(0,217,255,0.35)"></rect>
-                  <text x="180" y="82" text-anchor="middle" fill="#eaf0ff" font-size="20" font-weight="700">critical section</text>
-                  <circle cx="360" cy="76" r="16" fill="url(#g1)"></circle>
-                  <text x="360" y="82" text-anchor="middle" fill="#0b1020" font-size="18" font-weight="900">1</text>
-                  <rect x="406" y="54" width="160" height="44" rx="14" fill="rgba(45,212,191,0.10)" stroke="rgba(45,212,191,0.35)"></rect>
-                  <text x="486" y="82" text-anchor="middle" fill="#eaf0ff" font-size="20" font-weight="700">one at a time</text>
-                </svg>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 3: Ch7 -->
     <section class="slide" data-title="Ch7 经典同步">
       <div class="stage">
         <div class="h2 an anim-item"><i class="fa-solid fa-people-group"></i> Chapter 07 · Synchronization Examples</div>
@@ -372,55 +298,23 @@
           <div class="card an anim-item" data-delay="260">
             <h3><i class="fa-solid fa-list-check"></i> 三题速记</h3>
             <div class="bullets">
-              <div class="bullet">
-                <i class="fa-solid fa-box"></i>
-                <div class="t"><span class="hl">Bounded-Buffer</span>
-                  <small>empty/full + mutex（生产者/消费者共享缓冲区）</small>
-                </div>
-              </div>
-              <div class="bullet">
-                <i class="fa-solid fa-book-open-reader"></i>
-                <div class="t"><span class="hl2">Readers–Writers</span>
-                  <small>关注公平性：避免 writer starvation</small>
-                </div>
-              </div>
-              <div class="bullet">
-                <i class="fa-solid fa-utensils"></i>
-                <div class="t"><span class="warn">Dining Philosophers</span>
-                  <small>重点在打破 circular wait（限制并发或固定拿锁顺序）</small>
-                </div>
-              </div>
+              <div class="bullet"><i class="fa-solid fa-box"></i><div class="t"><span class="hl">Bounded-Buffer</span><small>empty/full + mutex（生产者/消费者共享缓冲区）</small></div></div>
+              <div class="bullet"><i class="fa-solid fa-book-open-reader"></i><div class="t"><span class="hl2">Readers–Writers</span><small>关注公平性：避免 writer starvation</small></div></div>
+              <div class="bullet"><i class="fa-solid fa-utensils"></i><div class="t"><span class="warn">Dining Philosophers</span><small>重点在打破 circular wait（限制并发或固定拿锁顺序）</small></div></div>
             </div>
           </div>
-
           <div class="card an anim-item" data-delay="360">
             <h3><i class="fa-solid fa-route"></i> 其他思路（观念题）</h3>
             <div class="bullets">
-              <div class="bullet">
-                <i class="fa-solid fa-receipt"></i>
-                <div class="t">Transactional Memory：把共享读写当“事务”
-                  <small>commit 成功就生效，失败则 rollback</small>
-                </div>
-              </div>
-              <div class="bullet">
-                <i class="fa-solid fa-code"></i>
-                <div class="t">OpenMP：<span class="hl">pragma omp critical</span>
-                  <small>把代码块当成临界区，按原子方式执行</small>
-                </div>
-              </div>
-              <div class="bullet">
-                <i class="fa-solid fa-feather-pointed"></i>
-                <div class="t">函数式：不可变数据降低 data race
-                  <small>从“避免共享可变状态”来解决并发复杂度</small>
-                </div>
-              </div>
+              <div class="bullet"><i class="fa-solid fa-receipt"></i><div class="t">Transactional Memory：把共享读写当“事务”<small>commit 成功就生效，失败则 rollback</small></div></div>
+              <div class="bullet"><i class="fa-solid fa-code"></i><div class="t">OpenMP：<span class="hl">pragma omp critical</span><small>把代码块当成临界区，按原子方式执行</small></div></div>
+              <div class="bullet"><i class="fa-solid fa-feather-pointed"></i><div class="t">函数式：不可变数据降低 data race<small>从“避免共享可变状态”来解决并发复杂度</small></div></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 4: Ch8 -->
     <section class="slide" data-title="Ch8 死锁">
       <div class="stage">
         <div class="h2 an anim-item"><i class="fa-solid fa-circle-nodes"></i> Chapter 08 · Deadlocks</div>
@@ -437,7 +331,6 @@
               <div class="bullet"><i class="fa-solid fa-arrows-rotate"></i><div class="t">Circular Wait <small>等待形成环</small></div></div>
             </div>
           </div>
-
           <div class="card an anim-item" data-delay="360">
             <h3><i class="fa-solid fa-compass"></i> 四种处理策略</h3>
             <div class="bullets">
@@ -445,183 +338,88 @@
               <div class="bullet"><i class="fa-solid fa-shield"></i><div class="t">Prevention（预防）<small>让四条件无法同时成立</small></div></div>
               <div class="bullet"><i class="fa-solid fa-vault"></i><div class="t">Avoidance（避免）<small>Banker：保持 safe state</small></div></div>
               <div class="bullet"><i class="fa-solid fa-siren-on"></i><div class="t">Detection + Recovery <small>允许发生，事后检测并恢复</small></div></div>
-              <div class="svg-box" style="margin-top:6px">
-                <div class="svg-title"><i class="fa-solid fa-link"></i> 资源等待环（示意）</div>
-                <svg viewBox="0 0 620 170" width="100%" height="170" role="img" aria-label="deadlock cycle">
-                  <defs>
-                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-                      <path d="M0,0 L10,5 L0,10 Z" fill="rgba(234,240,255,0.75)"></path>
-                    </marker>
-                  </defs>
-                  <rect x="10" y="16" width="600" height="138" rx="18" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"></rect>
-                  <g font-family="Noto Sans SC" font-size="18" fill="#eaf0ff" font-weight="700">
-                    <circle cx="160" cy="88" r="30" fill="rgba(255,93,108,0.18)" stroke="rgba(255,93,108,0.55)"></circle>
-                    <text x="160" y="94" text-anchor="middle">P1</text>
-                    <circle cx="310" cy="50" r="30" fill="rgba(0,217,255,0.12)" stroke="rgba(0,217,255,0.55)"></circle>
-                    <text x="310" y="56" text-anchor="middle">R1</text>
-                    <circle cx="460" cy="88" r="30" fill="rgba(255,93,108,0.18)" stroke="rgba(255,93,108,0.55)"></circle>
-                    <text x="460" y="94" text-anchor="middle">P2</text>
-                    <circle cx="310" cy="126" r="30" fill="rgba(0,217,255,0.12)" stroke="rgba(0,217,255,0.55)"></circle>
-                    <text x="310" y="132" text-anchor="middle">R2</text>
-                  </g>
-                  <path d="M190 78 C240 40, 260 35, 280 44" stroke="rgba(234,240,255,0.75)" stroke-width="3" fill="none" marker-end="url(#arrow)"></path>
-                  <path d="M340 56 C390 70, 408 78, 430 82" stroke="rgba(234,240,255,0.75)" stroke-width="3" fill="none" marker-end="url(#arrow)"></path>
-                  <path d="M430 98 C390 130, 360 140, 340 134" stroke="rgba(234,240,255,0.75)" stroke-width="3" fill="none" marker-end="url(#arrow)"></path>
-                  <path d="M280 120 C240 110, 214 104, 192 98" stroke="rgba(234,240,255,0.75)" stroke-width="3" fill="none" marker-end="url(#arrow)"></path>
-                  <text x="310" y="160" text-anchor="middle" fill="rgba(234,240,255,0.70)" font-size="16">当形成等待环 + 资源不可抢占 → 有可能进入死锁</text>
-                </svg>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 5: Ch9 -->
     <section class="slide" data-title="Ch9 主存">
       <div class="stage">
         <div class="h2 an anim-item"><i class="fa-solid fa-memory"></i> Chapter 09 · Main Memory</div>
         <div class="subtitle an anim-item" data-delay="140">
-          这章的主线：<span class="hl">地址翻译</span> 与 <span class="hl2">内存分配</span>。你要能把“程序看到的地址”变成“物理地址”，并理解碎片问题与分页机制的取舍。
+          主线：<span class="hl">地址翻译</span> 与 <span class="hl2">内存分配</span>。理解碎片问题与 paging/TLB 的取舍。
         </div>
         <div class="grid">
           <div class="card an anim-item" data-delay="260">
-            <h3><i class="fa-solid fa-map-location-dot"></i> 逻辑地址 vs 物理地址</h3>
+            <h3><i class="fa-solid fa-map-location-dot"></i> 地址翻译</h3>
             <div class="bullets">
-              <div class="bullet">
-                <i class="fa-solid fa-right-left"></i>
-                <div class="t"><span class="hl">MMU</span> 负责翻译
-                  <small>paging 中：frame_number × page_size + offset</small>
-                </div>
-              </div>
-              <div class="svg-box">
-                <div class="svg-title"><i class="fa-solid fa-arrow-right"></i> 地址翻译（示意）</div>
-                <svg viewBox="0 0 620 160" width="100%" height="160" role="img" aria-label="address translation">
-                  <defs>
-                    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
-                      <path d="M0,0 L10,5 L0,10 Z" fill="rgba(234,240,255,0.78)"></path>
-                    </marker>
-                  </defs>
-                  <rect x="10" y="16" width="600" height="128" rx="18" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"></rect>
-                  <rect x="34" y="54" width="170" height="56" rx="14" fill="rgba(0,217,255,0.10)" stroke="rgba(0,217,255,0.40)"></rect>
-                  <text x="119" y="87" text-anchor="middle" fill="#eaf0ff" font-size="18" font-weight="800">logical addr</text>
-                  <rect x="242" y="48" width="140" height="68" rx="16" fill="rgba(167,139,250,0.10)" stroke="rgba(167,139,250,0.40)"></rect>
-                  <text x="312" y="78" text-anchor="middle" fill="#eaf0ff" font-size="18" font-weight="900">MMU</text>
-                  <text x="312" y="100" text-anchor="middle" fill="rgba(234,240,255,0.70)" font-size="14">page table / TLB</text>
-                  <rect x="416" y="54" width="184" height="56" rx="14" fill="rgba(45,212,191,0.10)" stroke="rgba(45,212,191,0.40)"></rect>
-                  <text x="508" y="87" text-anchor="middle" fill="#eaf0ff" font-size="18" font-weight="800">physical addr</text>
-                  <path d="M206 82 L232 82" stroke="rgba(234,240,255,0.78)" stroke-width="3" marker-end="url(#arrow2)"></path>
-                  <path d="M382 82 L406 82" stroke="rgba(234,240,255,0.78)" stroke-width="3" marker-end="url(#arrow2)"></path>
-                </svg>
-              </div>
+              <div class="bullet"><i class="fa-solid fa-right-left"></i><div class="t"><span class="hl">MMU</span> 负责翻译<small>paging：frame_number × page_size + offset</small></div></div>
+              <div class="bullet"><i class="fa-solid fa-microchip"></i><div class="t">TLB：把常用页表项缓存起来<small>miss 会带来额外访问成本</small></div></div>
             </div>
           </div>
-
           <div class="card an anim-item" data-delay="360">
-            <h3><i class="fa-solid fa-table-cells"></i> 分配方式的取舍</h3>
+            <h3><i class="fa-solid fa-table-cells"></i> 分配方式</h3>
             <div class="bullets">
-              <div class="bullet">
-                <i class="fa-solid fa-grip-lines-vertical"></i>
-                <div class="t"><span class="hl">Contiguous</span>：first/best/worst-fit
-                  <small><span class="warn">external fragmentation</span>：空洞不连续</small>
-                </div>
-              </div>
-              <div class="bullet">
-                <i class="fa-solid fa-layer-group"></i>
-                <div class="t"><span class="hl2">Paging</span>：page / frame + page table
-                  <small>避免外部碎片；但有页表开销与 TLB miss 代价</small>
-                </div>
-              </div>
-              <div class="bullet">
-                <i class="fa-solid fa-hard-drive"></i>
-                <div class="t">Swapping（现代多为 page-in/page-out）
-                  <small>传统整进程 swapping 成本高，现代多做分页换入换出</small>
-                </div>
-              </div>
+              <div class="bullet"><i class="fa-solid fa-grip-lines-vertical"></i><div class="t"><span class="hl">Contiguous</span><small>external fragmentation：空洞不连续</small></div></div>
+              <div class="bullet"><i class="fa-solid fa-layer-group"></i><div class="t"><span class="hl2">Paging</span><small>避免外部碎片；有页表开销</small></div></div>
+              <div class="bullet"><i class="fa-solid fa-hard-drive"></i><div class="t">Swapping（现代多为 page-in/page-out）<small>整进程 swapping 成本高</small></div></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 6: Ch10 -->
     <section class="slide" data-title="Ch10 虚拟内存">
       <div class="stage">
         <div class="h2 an anim-item"><i class="fa-solid fa-cloud"></i> Chapter 10 · Virtual Memory</div>
         <div class="subtitle an anim-item" data-delay="140">
-          目标：让程序不受物理内存限制，并提高并发度。关键机制：<span class="hl">demand paging</span>、<span class="hl2">page replacement</span>、以及理解 <span class="warn">thrashing</span>。
+          关键机制：<span class="hl">demand paging</span>、<span class="hl2">page replacement</span>，以及理解 <span class="warn">thrashing</span>。
         </div>
         <div class="grid">
           <div class="card an anim-item" data-delay="260">
-            <h3><i class="fa-solid fa-bolt"></i> Demand Paging：一次 page fault</h3>
+            <h3><i class="fa-solid fa-bolt"></i> Page fault（4步）</h3>
             <div class="bullets">
-              <div class="bullet"><i class="fa-solid fa-1"></i><div class="t">访问缺页 → trap（page fault）</div></div>
-              <div class="bullet"><i class="fa-solid fa-2"></i><div class="t">检查合法性；找 free frame 或触发置换</div></div>
-              <div class="bullet"><i class="fa-solid fa-3"></i><div class="t">磁盘 I/O 读入页面；更新页表/TLB</div></div>
-              <div class="bullet"><i class="fa-solid fa-4"></i><div class="t">重启被中断指令（程序“感觉不到”）</div></div>
+              <div class="bullet"><i class="fa-solid fa-1"></i><div class="t">缺页 → trap（page fault）</div></div>
+              <div class="bullet"><i class="fa-solid fa-2"></i><div class="t">找 frame / 触发置换</div></div>
+              <div class="bullet"><i class="fa-solid fa-3"></i><div class="t">磁盘 I/O 载入；更新页表/TLB</div></div>
+              <div class="bullet"><i class="fa-solid fa-4"></i><div class="t">重启指令</div></div>
             </div>
           </div>
-
           <div class="card an anim-item" data-delay="360">
             <h3><i class="fa-solid fa-rotate"></i> Replacement &amp; Thrashing</h3>
             <div class="bullets">
-              <div class="bullet">
-                <i class="fa-solid fa-hourglass-half"></i>
-                <div class="t">FIFO / OPT / LRU
-                  <small>FIFO 可能有 Belady anomaly；OPT 作为理论上界；LRU 符合 locality（常用近似）</small>
-                </div>
-              </div>
-              <div class="bullet">
-                <i class="fa-solid fa-fire-flame-curved"></i>
-                <div class="t"><span class="warn">Thrashing</span>：working set 放不进 frames
-                  <small>page fault 爆炸 → CPU 利用率反而下降</small>
-                </div>
-              </div>
-              <div class="bullet">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <div class="t">TLB Reach = (TLB Size) × (Page Size)
-                  <small>想覆盖 working set：增大页或提供多种页大小</small>
-                </div>
-              </div>
-              <div class="bullet">
-                <i class="fa-solid fa-plug-circle-bolt"></i>
-                <div class="t">I/O interlock：某些页必须 pin 住
-                  <small>避免 I/O 用到的页被置换算法驱逐</small>
-                </div>
-              </div>
+              <div class="bullet"><i class="fa-solid fa-hourglass-half"></i><div class="t">FIFO / OPT / LRU<small>FIFO 可能有 Belady anomaly；LRU 常用近似</small></div></div>
+              <div class="bullet"><i class="fa-solid fa-fire-flame-curved"></i><div class="t"><span class="warn">Thrashing</span><small>working set 放不进 frames → fault 爆炸</small></div></div>
+              <div class="bullet"><i class="fa-solid fa-magnifying-glass"></i><div class="t">TLB Reach = (TLB Size) × (Page Size)<small>扩大覆盖：更大/多种页大小</small></div></div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Slide 7 -->
     <section class="slide" data-title="总结">
       <div class="stage">
-        <div class="h2 an anim-item"><i class="fa-solid fa-diagram-predecessor"></i> 一张“脑内地图”</div>
+        <div class="h2 an anim-item"><i class="fa-solid fa-diagram-predecessor"></i> 总结</div>
         <div class="subtitle an anim-item" data-delay="140">
-          把 Ch6–Ch10 串起来：<span class="hl">并发</span> 让共享状态变危险；我们用同步保证正确性；同步不当会引出 <span class="warn">死锁</span>；而内存系统通过 paging/virtual memory 把容量与性能问题“工程化”解决。
+          并发让共享状态变危险 → 同步保证正确性 → 不当同步会引出死锁 → paging/virtual memory 把容量与性能问题工程化解决。
         </div>
-
         <div class="grid">
           <div class="card an anim-item" data-delay="260">
-            <h3><i class="fa-solid fa-star"></i> 高频考点清单</h3>
+            <h3><i class="fa-solid fa-star"></i> 高频考点</h3>
             <div class="bullets">
-              <div class="bullet"><i class="fa-solid fa-check"></i><div class="t">critical section 与 race condition 的关系</div></div>
-              <div class="bullet"><i class="fa-solid fa-check"></i><div class="t">mutex / semaphore / monitor 的适用场景</div></div>
+              <div class="bullet"><i class="fa-solid fa-check"></i><div class="t">critical section 与 race condition</div></div>
+              <div class="bullet"><i class="fa-solid fa-check"></i><div class="t">mutex / semaphore / monitor</div></div>
               <div class="bullet"><i class="fa-solid fa-check"></i><div class="t">死锁四条件 + 四策略</div></div>
-              <div class="bullet"><i class="fa-solid fa-check"></i><div class="t">paging 地址翻译、TLB 的作用与代价</div></div>
-              <div class="bullet"><i class="fa-solid fa-check"></i><div class="t">page replacement（FIFO/OPT/LRU）+ thrashing</div></div>
+              <div class="bullet"><i class="fa-solid fa-check"></i><div class="t">paging + TLB + replacement + thrashing</div></div>
             </div>
           </div>
-
           <div class="card an anim-item" data-delay="360">
-            <h3><i class="fa-solid fa-lightbulb"></i> 复习方法建议</h3>
+            <h3><i class="fa-solid fa-lightbulb"></i> iPhone浏览小技巧</h3>
             <div class="bullets">
-              <div class="bullet"><i class="fa-solid fa-pen"></i><div class="t">每章写一句“定义”，再写一句“为什么需要它”</div></div>
-              <div class="bullet"><i class="fa-solid fa-diagram-project"></i><div class="t">把机制画成 3~5 步流程（更容易拿分）</div></div>
-              <div class="bullet"><i class="fa-solid fa-scale-balanced"></i><div class="t">遇到比较题：写清楚 <span class="hl">收益</span> vs <span class="warn">代价</span></div></div>
-              <div class="bullet"><i class="fa-solid fa-keyboard"></i><div class="t">最后：用键盘翻页，把这份 PPT 当“口述稿”练一遍</div></div>
+              <div class="bullet"><i class="fa-solid fa-hand-pointer"></i><div class="t">内容放不下时可上下滚动（每页独立滚动）</div></div>
+              <div class="bullet"><i class="fa-solid fa-mobile-screen-button"></i><div class="t">底部按钮避开安全区（刘海/手势条）</div></div>
+              <div class="bullet"><i class="fa-solid fa-keyboard"></i><div class="t">蓝牙键盘可用 ← → / 空格翻页</div></div>
             </div>
           </div>
         </div>
@@ -629,7 +427,6 @@
     </section>
   </div>
 
-  <!-- nav -->
   <div class="nav" aria-label="Slide navigation">
     <div class="btn" id="prevBtn" title="上一页"><i class="fa-solid fa-arrow-left"></i></div>
     <div class="dots" id="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
@@ -644,7 +441,7 @@
     let current = 0;
 
     function buildDots(){
-      slides.forEach((s, i) => {
+      slides.forEach((_, i) => {
         const d = document.createElement('div');
         d.className = 'dot' + (i === 0 ? ' active' : '');
         d.addEventListener('click', () => showSlide(i));
@@ -653,7 +450,6 @@
     }
 
     function resetAnim(slide){
-      // 克隆节点强制重置CSS动画/transition（并且保持 class 识别为 .an/.anim-item）
       slide.querySelectorAll('.an, .anim-item').forEach(item => {
         const clone = item.cloneNode(true);
         item.parentNode.replaceChild(clone, item);
@@ -681,11 +477,8 @@
       slides[i].classList.add('active');
       updateDots(i);
 
-      // reset + play
       resetAnim(slides[i]);
-      // resetAnim 会替换节点，因此需要重新 query
       setTimeout(() => playStagger(slides[i]), 0);
-
       current = i;
     }
 
@@ -697,13 +490,10 @@
     });
 
     buildDots();
-    // initial
     resetAnim(slides[0]);
     playStagger(slides[0]);
 
-    /* ===== Skill要求的“动画重置修复”兜底 ===== */
     (function() {
-      // 克隆节点强制重置CSS动画，确保每次切换页面动画重新触发
       document.querySelectorAll('.slide').forEach(function(s) {
         s.querySelectorAll('.an, .anim-item, [style*="animation"]').forEach(function(item) {
           var clone = item.cloneNode(true);
