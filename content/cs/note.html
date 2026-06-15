@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<!-- saved from url=(0214)file:///Users/raphtalia/Library/Application%20Support/TRAE%20SOLO/ModularData/ai-agent/work-mode-projects/6a2fa3022223bf62f46d7833/OS_Ch06-10_%E6%89%8B%E5%B8%B3%E7%9A%AE%E9%9D%A9%E6%9C%AC_%E6%96%B0%E7%89%88PDF.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業系統 Chapter 06–10｜手帳皮革本筆記（新版PDF）</title>
+    <link href="./作業系統 Chapter 06–10｜手帳皮革本筆記（新版PDF）_files/css2" rel="stylesheet">
+    <link href="./作業系統 Chapter 06–10｜手帳皮革本筆記（新版PDF）_files/remixicon.css" rel="stylesheet">
+    <style>
+        :root {
+            --paper-color: #fdfbf7;
+            --paper-shadow: #e8e4dc;
+            --ink-color: #2c2c2c;
+            --ink-light: #4a4a4a;
+            --accent-blue: #2b6cb0;
+            --accent-red: #c53030;
+            --highlight: rgba(255, 255, 0, 0.4);
+            --highlight-pink: rgba(255, 105, 180, 0.3);
+            --line-color: #a4b0be;
+            --margin-line: #ff6b6b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Kalam', 'Ma Shan Zheng', cursive;
+            background: #3d3d3d;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.03) 0%, transparent 50%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .notebook {
+            width: 900px;
+            max-width: 95vw;
+            background: #8b4513;
+            background-image:
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 4px),
+                linear-gradient(180deg, #8b4513 0%, #6b3410 100%);
+            border-radius: 12px 18px 18px 12px;
+            padding: 25px 20px 25px 35px;
+            box-shadow:
+                0 0 0 2px #5c2e0b,
+                0 20px 60px rgba(0,0,0,0.6),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1500px;
+        }
+
+        .notebook::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 15px;
+            bottom: 15px;
+            width: 3px;
+            background: linear-gradient(180deg,
+                rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 20%,
+                rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 60%,
+                rgba(0,0,0,0.3) 80%, rgba(0,0,0,0.1) 100%);
+            border-radius: 2px;
+        }
+
+        .rings {
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            z-index: 10;
+        }
+
+        .ring {
+            width: 24px;
+            height: 14px;
+            background: linear-gradient(180deg, #c0c0c0 0%, #808080 50%, #a0a0a0 100%);
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+            position: relative;
+        }
+
+        .ring::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: -3px;
+            width: 8px;
+            height: 20px;
+            background: linear-gradient(90deg, #d0d0d0 0%, #909090 50%, #b0b0b0 100%);
+            border-radius: 4px;
+            transform: translateX(-50%);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .pages-container { position: relative; width: 100%; min-height: 700px; }
+
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            min-height: 700px;
+            background: var(--paper-color);
+            background-image:
+                repeating-linear-gradient(transparent, transparent 31px, var(--line-color) 31px, var(--line-color) 32px);
+            background-size: 100% 32px;
+            background-position: 0 48px;
+            border-radius: 4px 12px 12px 4px;
+            padding: 40px 50px 40px 60px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.15), inset 0 0 60px rgba(139, 69, 19, 0.03);
+            transform-origin: left center;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.6s ease;
+            opacity: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .page.active { opacity: 1; pointer-events: all; transform: rotateY(0deg); z-index: 5; }
+        .page.flipped { transform: rotateY(-140deg); opacity: 0; pointer-events: none; }
+
+        .page::before {
+            content: '';
+            position: absolute;
+            left: 50px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: var(--margin-line);
+            opacity: 0.4;
+        }
+
+        .page::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .page.cover {
+            background: #f5f0e8;
+            background-image: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+        }
+        .page.cover::before { display: none; }
+
+        .cover-decoration {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 4rem;
+            opacity: 0.15;
+            transform: rotate(-15deg);
+        }
+
+        .cover-title {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 3.4rem;
+            color: var(--accent-red);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            display: inline-block;
+        }
+        .cover-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: -10%;
+            width: 120%;
+            height: 3px;
+            background: var(--accent-red);
+            opacity: 0.3;
+            border-radius: 2px;
+        }
+
+        .cover-subtitle {
+            font-size: 1.3rem;
+            color: var(--ink-light);
+            margin-bottom: 34px;
+            font-style: italic;
+        }
+
+        .cover-doodle {
+            width: 210px;
+            height: 150px;
+            margin: 10px 0 18px;
+            opacity: 0.65;
+        }
+
+        .cover-hint {
+            position: absolute;
+            bottom: 40px;
+            font-size: 1rem;
+            color: var(--ink-light);
+            opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .content-wrapper { position: relative; z-index: 1; }
+
+        .page-header {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 2rem;
+            color: var(--accent-red);
+            margin-bottom: 16px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--accent-red);
+            opacity: 0.7;
+            display: inline-block;
+        }
+
+        .handwriting {
+            font-size: 1.12rem;
+            line-height: 32px;
+            color: var(--ink-color);
+            text-align: justify;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .highlight { background: linear-gradient(180deg, transparent 60%, var(--highlight) 60%); padding: 0 2px; font-weight: bold; }
+        .highlight-pink { background: linear-gradient(180deg, transparent 60%, var(--highlight-pink) 60%); padding: 0 2px; font-weight: bold; }
+
+        .underline-wavy {
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: var(--accent-red);
+        }
+
+        .warning-text { color: var(--accent-red); font-weight: bold; }
+        .key-term { font-family: 'Zeyada', cursive; font-size: 1.45rem; color: var(--accent-blue); margin: 0 3px; }
+
+        .page-number {
+            position: absolute;
+            bottom: 20px;
+            right: 30px;
+            font-size: 1rem;
+            color: var(--ink-light);
+            opacity: 0.6;
+            font-family: 'Zeyada', cursive;
+        }
+
+        .sticky-note {
+            position: absolute;
+            width: 160px;
+            background: #fffbcc;
+            padding: 12px;
+            border-radius: 4px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            transform: rotate(3deg);
+            font-size: 1rem;
+            line-height: 1.4;
+            opacity: 0.9;
+            z-index: 2;
+        }
+        .sticky-note.top-right { top: 86px; right: 35px; }
+        .sticky-note.blue { background: #dbeafe; transform: rotate(-2deg); }
+        .sticky-note.green { background: #dcfce7; transform: rotate(2deg); }
+
+        .key-point-box {
+            margin-top: 14px;
+            padding: 12px 14px;
+            border: 2px solid var(--accent-blue);
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(43,108,176,0.05) 0%, rgba(43,108,176,0.02) 100%);
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.08);
+        }
+        .box-title { font-family: 'Ma Shan Zheng', cursive; font-size: 1.4rem; color: var(--accent-blue); margin-bottom: 6px; }
+        .box-content { font-size: 1.08rem; line-height: 30px; color: var(--ink-color); }
+
+        .concept-cards { display: flex; gap: 12px; margin: 14px 0 10px; flex-wrap: wrap; }
+        .concept-card {
+            flex: 1 1 180px;
+            min-width: 180px;
+            max-width: 240px;
+            background: white;
+            border-radius: 12px;
+            padding: 12px 12px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.12);
+            border: 1px solid rgba(0,0,0,0.08);
+            transform: rotate(-0.2deg);
+        }
+        .card-icon { font-size: 1.4rem; color: var(--accent-red); opacity: 0.8; margin-bottom: 6px; }
+        .card-title { font-family: 'Ma Shan Zheng', cursive; font-size: 1.25rem; color: var(--ink-color); margin-bottom: 4px; }
+        .card-desc { font-size: 1.02rem; color: var(--ink-light); line-height: 26px; }
+
+        .flow-steps { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 12px 0 6px; }
+        .flow-step {
+            background: rgba(197,48,48,0.06);
+            border: 1px solid rgba(197,48,48,0.22);
+            border-radius: 10px;
+            padding: 8px 10px;
+            box-shadow: 2px 2px 0 rgba(0,0,0,0.06);
+            font-size: 1.04rem;
+        }
+        .flow-arrow { font-size: 1.2rem; color: rgba(44,44,44,0.5); }
+        .step-num {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(197,48,48,0.12);
+            border: 1px solid rgba(197,48,48,0.22);
+            text-align: center;
+            line-height: 22px;
+            color: var(--accent-red);
+            margin-right: 6px;
+            font-weight: bold;
+        }
+
+        .diagram-container {
+            background: rgba(255,255,255,0.75);
+            border: 1px dashed rgba(0,0,0,0.18);
+            border-radius: 12px;
+            padding: 12px 14px;
+            margin: 12px 0;
+        }
+        .diagram-title { font-family: 'Ma Shan Zheng', cursive; font-size: 1.35rem; color: var(--accent-red); margin-bottom: 8px; opacity: 0.9; }
+
+        table.quick-table { width: 100%; border-collapse: collapse; font-size: 1.02rem; }
+        table.quick-table th, table.quick-table td { border: 1px solid rgba(0,0,0,0.12); padding: 8px 10px; vertical-align: top; }
+        table.quick-table th { background: rgba(43,108,176,0.08); color: var(--accent-blue); font-family: 'Ma Shan Zheng', cursive; font-size: 1.15rem; }
+
+        @media (max-width: 768px) {
+            .notebook { padding: 20px 15px 20px 30px; }
+            .page { padding: 30px 25px 30px 45px; min-height: 500px; }
+            .cover-title { font-size: 2.4rem; }
+            .handwriting { font-size: 1rem; line-height: 28px; }
+            .concept-cards { flex-direction: column; align-items: center; }
+            .concept-card { max-width: 100%; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="notebook">
+        <div class="rings">
+            <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+            <div class="ring"></div><div class="ring"></div><div class="ring"></div><div class="ring"></div>
+        </div>
+
+        <div class="pages-container" id="pagesContainer">
+            <!-- 封面 -->
+            <div class="page cover active" data-page="0">
+                <div class="cover-decoration"><i class="ri-book-2-line"></i></div>
+                <div class="cover-title">作業系統 06–10</div>
+                <div class="cover-subtitle">同步 × 死結 × 記憶體（手帳皮革本｜新版 PDF）</div>
+
+                <svg class="cover-doodle" viewBox="0 0 200 150">
+                    <path d="M20,80 Q60,20 100,80 T180,80" fill="none" stroke="#c53030" stroke-width="2" stroke-dasharray="6,6" opacity="0.55"></path>
+                    <path d="M25,105 C55,85 70,130 100,110 C130,90 150,120 175,105" fill="none" stroke="#2b6cb0" stroke-width="2" opacity="0.35"></path>
+                    <rect x="35" y="35" width="42" height="52" fill="none" stroke="#2c2c2c" stroke-width="1.5" rx="4"></rect>
+                    <rect x="123" y="45" width="42" height="42" fill="none" stroke="#2c2c2c" stroke-width="1.5" rx="4"></rect>
+                    <text x="46" y="66" font-size="14" fill="#c53030">LOCK</text>
+                    <text x="129" y="70" font-size="14" fill="#2b6cb0">MEM</text>
+                </svg>
+
+                <div style="font-size: 1rem; color: var(--ink-light); margin-top: 10px;">
+                    <span style="display: block; margin: 6px 0;"><i class="ri-check-line"></i> CH06：critical section、mutex、semaphore、monitor</span>
+                    <span style="display: block; margin: 6px 0;"><i class="ri-check-line"></i> CH07：經典同步題（buffer / readers-writers / philosophers）</span>
+                    <span style="display: block; margin: 6px 0;"><i class="ri-check-line"></i> CH08：deadlock 四條件 + 四策略</span>
+                    <span style="display: block; margin: 6px 0;"><i class="ri-check-line"></i> CH09-10：paging、TLB、virtual memory、thrashing</span>
+                </div>
+
+                <div class="cover-hint">點擊翻頁開始閱讀 ↓</div>
+            </div>
+
+            <!-- 第1页：CH06 同步核心 -->
+            <div class="page" data-page="1">
+                <div class="content-wrapper">
+                    <div class="page-header"><i class="ri-lock-line"></i> CH06｜Synchronization Tools</div>
+
+                    <div class="sticky-note top-right">
+                        先問：<br>
+                        誰在改<br>
+                        共享資料？
+                    </div>
+
+                    <p class="handwriting">
+                        多行程/多執行緒同時存取共享狀態，若交錯執行就會產生 <span class="highlight">race condition</span>。核心概念是
+                        <span class="highlight">critical section</span>：同一時間只允許一條執行路徑進入修改共享資料。
+                    </p>
+
+                    <div class="concept-cards">
+                        <div class="concept-card">
+                            <div class="card-icon"><i class="ri-shield-line"></i></div>
+                            <div class="card-title">Mutex</div>
+                            <div class="card-desc">最直覺：<span class="underline-wavy">互斥</span>進出臨界區。</div>
+                        </div>
+                        <div class="concept-card">
+                            <div class="card-icon"><i class="ri-stack-line"></i></div>
+                            <div class="card-title">Semaphore</div>
+                            <div class="card-desc">可做二元/計數，控制「資源數」。</div>
+                        </div>
+                        <div class="concept-card">
+                            <div class="card-icon"><i class="ri-shape-2-line"></i></div>
+                            <div class="card-title">Monitor</div>
+                            <div class="card-desc">把互斥 + 條件等待封裝成高階抽象。</div>
+                        </div>
+                    </div>
+
+                    <div class="key-point-box">
+                        <div class="box-title"><i class="ri-lightbulb-line"></i> 一句話記憶</div>
+                        <div class="box-content">
+                            同步不是背 API，是確保「臨界區一次只給一個人」；工具只是實作手段。
+                        </div>
+                    </div>
+                </div>
+                <div class="page-number">1</div>
+            </div>
+
+            <!-- 第2页：CH06 活性與效能 -->
+            <div class="page" data-page="2">
+                <div class="content-wrapper">
+                    <div class="page-header"><i class="ri-alarm-warning-line"></i> CH06｜Liveness &amp; 評估</div>
+
+                    <div class="sticky-note top-right blue">
+                        互斥夠了？<br>
+                        還要<br>
+                        公平與活性
+                    </div>
+
+                    <p class="handwriting">
+                        除了互斥，還要看 <span class="highlight">liveness</span>：
+                        <span class="highlight-pink">deadlock</span>（互卡）、<span class="highlight-pink">starvation</span>（永遠輪不到）是不同問題。
+                    </p>
+
+                    <div class="diagram-container">
+                        <div class="diagram-title">Priority inversion（常考概念）</div>
+                        <p class="handwriting" style="margin-bottom:0;">
+                            低優先序拿著鎖 → 高優先序等鎖 → 中優先序一直插隊，讓高優先序等更久。常見解：
+                            <span class="highlight">priority inheritance</span>（持鎖者暫時繼承高優先序）。
+                        </p>
+                    </div>
+
+                    <div class="key-point-box" style="border-color: var(--accent-red);">
+                        <div class="box-title" style="color: var(--accent-red);"><i class="ri-flashlight-line"></i> CAS vs Mutex（效能直覺）</div>
+                        <div class="box-content">
+                            <span class="highlight">CAS</span> 常在低到中等競爭更快；但在極高競爭下，傳統鎖機制可能反而更穩。
+                        </div>
+                    </div>
+                </div>
+                <div class="page-number">2</div>
+            </div>
+
+            <!-- 第3页：CH07 經典同步題 -->
+            <div class="page" data-page="3">
+                <div class="content-wrapper">
+                    <div class="page-header"><i class="ri-git-pull-request-line"></i> CH07｜Synchronization Examples</div>
+
+                    <p class="handwriting">
+                        這三題是同步機制的「單元測試」：你要能說清楚共享狀態、需要哪些同步原語、以及如何避免死結/飢餓。
+                    </p>
+
+                    <div class="diagram-container">
+                        <div class="diagram-title">要點速記（只留會考的）</div>
+                        <table class="quick-table">
+                            <thead>
+                                <tr>
+                                    <th>問題</th>
+                                    <th>保護的共享狀態</th>
+                                    <th>常見技巧</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bounded-Buffer</td>
+                                    <td>buffer 空/滿與索引</td>
+                                    <td>semaphore：empty / full + mutex</td>
+                                </tr>
+                                <tr>
+                                    <td>Readers-Writers</td>
+                                    <td>readcount + 寫入互斥</td>
+                                    <td>要注意公平性（避免 writer starvation）</td>
+                                </tr>
+                                <tr>
+                                    <td>Dining Philosophers</td>
+                                    <td>筷子/鎖的取得順序</td>
+                                    <td>限制同時拿起數量或固定順序破壞 cycle</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="key-point-box">
+                        <div class="box-title"><i class="ri-route-line"></i> 另類解法（觀念題）</div>
+                        <div class="box-content">
+                            transactional memory（原子交易）、OpenMP <span class="underline-wavy">critical</span>、functional 的 immutability，都是降低 data race 的不同路線。
+                        </div>
+                    </div>
+                </div>
+                <div class="page-number">3</div>
+            </div>
+
+            <!-- 第4页：CH08 死結 -->
+            <div class="page" data-page="4">
+                <div class="content-wrapper">
+                    <div class="page-header"><i class="ri-spam-2-line"></i> CH08｜Deadlocks</div>
+
+                    <div class="sticky-note top-right green">
+                        四條件<br>
+                        同時成立<br>
+                        才會死結
+                    </div>
+
+                    <p class="handwriting">
+                        死結的判斷：<span class="highlight">四個必要條件</span>同時成立才會卡死。
+                    </p>
+
+                    <div class="concept-cards">
+                        <div class="concept-card">
+                            <div class="card-icon"><i class="ri-lock-2-line"></i></div>
+                            <div class="card-title">Mutual exclusion</div>
+                            <div class="card-desc">資源不可共享。</div>
+                        </div>
+                        <div class="concept-card">
+                            <div class="card-icon"><i class="ri-hand-heart-line"></i></div>
+                            <div class="card-title">Hold and wait</div>
+                            <div class="card-desc">拿著一個，還想再等。</div>
+                        </div>
+                        <div class="concept-card">
+                            <div class="card-icon"><i class="ri-forbid-2-line"></i></div>
+                            <div class="card-title">No preemption</div>
+                            <div class="card-desc">不能硬搶資源。</div>
+                        </div>
+                        <div class="concept-card">
+                            <div class="card-icon"><i class="ri-loop-left-line"></i></div>
+                            <div class="card-title">Circular wait</div>
+                            <div class="card-desc">等待形成環。</div>
+                        </div>
+                    </div>
+
+                    <div class="key-point-box" style="border-color: var(--accent-red);">
+                        <div class="box-title" style="color: var(--accent-red);"><i class="ri-compass-3-line"></i> 處理策略（四選一）</div>
+                        <div class="box-content">
+                            ignore（鴕鳥）／prevention（拆條件）／avoidance（Banker，safe state）／detection + recovery（偵測後終止或搶占資源）。
+                        </div>
+                    </div>
+                </div>
+                <div class="page-number">4</div>
+            </div>
+
+            <!-- 第5页：CH09 主記憶體 -->
+            <div class="page" data-page="5">
+                <div class="content-wrapper">
+                    <div class="page-header"><i class="ri-database-2-line"></i> CH09｜Main Memory</div>
+
+                    <p class="handwriting">
+                        位址翻譯核心：<span class="highlight">logical</span> 是程式看到的，
+                        <span class="highlight">physical</span> 是實體位置；<span class="highlight">MMU</span> 負責轉換。
+                    </p>
+
+                    <div class="diagram-container">
+                        <div class="diagram-title">配置方式對比</div>
+                        <table class="quick-table">
+                            <thead>
+                                <tr>
+                                    <th>方式</th>
+                                    <th>優點</th>
+                                    <th>常見痛點</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Contiguous allocation</td>
+                                    <td>概念簡單，直接切一塊連續記憶體</td>
+                                    <td>external fragmentation（空洞不連續）</td>
+                                </tr>
+                                <tr>
+                                    <td>Paging</td>
+                                    <td>避免外部碎裂，配合 TLB 加速</td>
+                                    <td>page table 成本 + TLB miss 代價</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="key-point-box">
+                        <div class="box-title"><i class="ri-swap-line"></i> Swapping（現代常見變形）</div>
+                        <div class="box-content">
+                            傳統「整個行程換出/換入」太慢；多改成 page-out / page-in（配合 paging）。行動裝置通常不做傳統 swapping，改以回收/終止策略釋放記憶體。
+                        </div>
+                    </div>
+                </div>
+                <div class="page-number">5</div>
+            </div>
+
+            <!-- 第6页：CH10 虛擬記憶體 -->
+            <div class="page" data-page="6">
+                <div class="content-wrapper">
+                    <div class="page-header"><i class="ri-cloud-line"></i> CH10｜Virtual Memory</div>
+
+                    <p class="handwriting">
+                        virtual memory 讓程式「看起來」有更大的記憶體；典型做法是 <span class="highlight">demand paging</span>：用到才載入。
+                    </p>
+
+                    <div class="flow-steps">
+                        <div class="flow-step"><span class="step-num">1</span>page fault trap</div>
+                        <span class="flow-arrow">→</span>
+                        <div class="flow-step"><span class="step-num">2</span>找 frame / 置換</div>
+                        <span class="flow-arrow">→</span>
+                        <div class="flow-step"><span class="step-num">3</span>磁碟載入</div>
+                        <span class="flow-arrow">→</span>
+                        <div class="flow-step"><span class="step-num">4</span>重啟指令</div>
+                    </div>
+
+                    <div class="key-point-box">
+                        <div class="box-title"><i class="ri-refresh-line"></i> Page replacement（最常考）</div>
+                        <div class="box-content">
+                            FIFO（可能有 Belady anomaly）／OPT（理論最優）／LRU（符合 locality，常用近似法）。
+                        </div>
+                    </div>
+
+                    <div class="key-point-box" style="border-color: var(--accent-red);">
+                        <div class="box-title" style="color: var(--accent-red);"><i class="ri-alert-line"></i> Thrashing 與 TLB Reach</div>
+                        <div class="box-content">
+                            working set 放不進 frames → fault 爆炸就是 <span class="highlight">thrashing</span>。<br>
+                            TLB Reach = (TLB size) × (page size)：想覆蓋 working set，得靠更大頁或多種頁大小。
+                        </div>
+                    </div>
+                </div>
+                <div class="page-number">6</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const totalPages = 7; // cover + 6 pages
+        const pages = document.querySelectorAll('.page');
+
+        function showPage(pageNum) {
+            pages.forEach((page, index) => {
+                page.classList.remove('active', 'flipped');
+                if (index < pageNum) page.classList.add('flipped');
+                else if (index === pageNum) page.classList.add('active');
+            });
+            currentPage = pageNum;
+        }
+
+        function nextPage() { if (currentPage < totalPages - 1) showPage(currentPage + 1); }
+        function prevPage() { if (currentPage > 0) showPage(currentPage - 1); }
+
+        document.querySelector('.page.cover').addEventListener('click', nextPage);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') nextPage();
+            else if (e.key === 'ArrowLeft') prevPage();
+        });
+
+        showPage(0);
+    </script>
+
+
+
+</body></html>
